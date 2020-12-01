@@ -8,7 +8,7 @@ public class CameraInterController : MonoBehaviour
     [SerializeField] private Camera camera;
 
     [Header("Zoom")]
-    [SerializeField] [Range(5f, 120f)] private float zoom = 90f;
+    [SerializeField] [Range(5f, 120f)] private float cameraZoom = 30f;
     [SerializeField] private static float minZoom = 5f;
     [SerializeField] private static float maxZoom = 120f;
     [SerializeField] private float zoomDelta = 5f;
@@ -19,6 +19,7 @@ public class CameraInterController : MonoBehaviour
     private void Awake()
     {
         camera = GetComponent<Camera>();
+        camera.orthographicSize = cameraZoom;
     }
 
     void Update()
@@ -31,19 +32,19 @@ public class CameraInterController : MonoBehaviour
     {
         if (Input.mouseScrollDelta.y != 0)
         {
-            if (zoom < minZoom)
+            if (cameraZoom < minZoom)
             {
-                zoom = minZoom;
+                cameraZoom = minZoom;
             }
-            else if (zoom > maxZoom)
+            else if (cameraZoom > maxZoom)
             {
-                zoom = maxZoom;
+                cameraZoom = maxZoom;
             }
 
             else
             {
-                zoom -= Input.mouseScrollDelta.y;
-                camera.orthographicSize = zoom;
+                cameraZoom -= Input.mouseScrollDelta.y;
+                camera.orthographicSize = cameraZoom;
             }
 
         }

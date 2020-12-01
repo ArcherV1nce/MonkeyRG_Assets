@@ -5,12 +5,12 @@ using UnityEngine;
 public class GridTesting : MonoBehaviour
 {
 
-    private Grid grid;
+    private Grid<bool> grid;
 
     // Start is called before the first frame update
     private void Start()
     {
-        grid = new Grid(20, 10, 5f);
+        grid = new Grid<bool>(20, 10, 5f, new Vector3(13, 0), () => new bool());
     }
 
     private void Update()
@@ -22,7 +22,7 @@ public class GridTesting : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            grid.SetValue(GetMouseWorldPosition(), 56);
+            grid.SetValue(GetMouseWorldPosition(), false);
         }
 
         if (Input.GetMouseButtonDown(1))
