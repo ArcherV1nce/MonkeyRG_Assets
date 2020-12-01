@@ -27,7 +27,7 @@ public class Grid {
         {
             for (int y = 0; y < gridArray.GetLength(1); y++)
             {
-                Debug.Log("x = " + x + " y = " + y);
+                //Debug.Log("x = " + x + " y = " + y);
 
                 debugArrayText[x,y] = CreateWorldText(gridArray[x, y].ToString(), null, GetWorldPosition(x,y) + new Vector3 (cellSize, cellSize) * 0.5f, 30, Color.white, TextAnchor.MiddleCenter);
                 Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x, y + 1), Color.grey, 100f);
@@ -38,9 +38,9 @@ public class Grid {
         
         }
 
-        SetValue(1, 2, 23);
+        //SetValue(1, 2, 23);
 
-        Debug.Log("With: " + width + " Height: " + height);
+        //Debug.Log("With: " + width + " Height: " + height);
         #endregion
     }
 
@@ -51,6 +51,41 @@ public class Grid {
             gridArray[x, y] = value;
             debugArrayText[x, y].text = gridArray[x, y].ToString();
         }
+    }
+
+    private void GetXY(Vector3 worldPosition, out int x, out int y)
+    {
+        x = Mathf.FloorToInt(worldPosition.x / cellSize);
+        y = Mathf.FloorToInt(worldPosition.y / cellSize);
+    }
+
+    public void SetValue (Vector3 worldPosition, int value)
+    {
+        int x, y;
+        GetXY(worldPosition, out x, out y);
+        SetValue(x, y, value);
+    }
+
+    public int GetValue(int x, int y)
+    {
+        if (x >= 0 && y >= 0 && x < width && y < height)
+        {
+            Debug.Log("Grid cell value is: " + gridArray[x, y].ToString());
+            return gridArray[x, y];
+        }
+
+        else
+        {
+            Debug.LogWarning("Out of array position.");
+            return 0;
+        }
+    }
+
+    public int GetValue(Vector3 worldPosition)
+    {
+        int x, y;
+        GetXY(worldPosition, out x, out y);
+        return GetValue(x, y);
     }
 
     #region Create text in the game world
