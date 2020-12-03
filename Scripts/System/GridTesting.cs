@@ -5,12 +5,12 @@ using UnityEngine;
 public class GridTesting : MonoBehaviour
 {
 
-    private Grid<bool> grid;
+    private Grid<HeatMapGridObject> grid;
 
     // Start is called before the first frame update
     private void Start()
     {
-        grid = new Grid<bool>(20, 10, 5f, new Vector3(13, 0), () => new bool());
+        grid = new Grid<HeatMapGridObject>(100 , 100, 5f, Vector3.zero, (Grid<HeatMapGridObject> g, int x, int y) => new HeatMapGridObject(g, x, y));
     }
 
     private void Update()
@@ -22,14 +22,105 @@ public class GridTesting : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            grid.SetValue(GetMouseWorldPosition(), false);
+            Vector3 position = GetMouseWorldPosition();
+            HeatMapGridObject heatMapGridObject = grid.GetGridObject(position);
+            if (heatMapGridObject != null)
+            {
+                heatMapGridObject.AddValue(10);
+            }
         }
 
         if (Input.GetMouseButtonDown(1))
         {
-            grid.GetValue(GetMouseWorldPosition());
+            grid.GetGridObject(GetMouseWorldPosition());
         }
     }
+
+    public class HeatMapGridObject
+    {
+        private const int minHeatMapValue = 0;
+        private const int maxHeatMapValue = 100;
+
+        private Grid<HeatMapGridObject> grid;
+        private int x;
+        private int y;
+        private int value;
+
+        public HeatMapGridObject(Grid<HeatMapGridObject> grid, int x, int y)
+        {
+            this.grid = grid;
+            this.x = x;
+            this.y = y;
+        }
+
+        public void AddValue(int addValue)
+        {
+            value += addValue;
+            Mathf.Clamp(value, minHeatMapValue, maxHeatMapValue);
+            grid.TriggerGridObjectChanged(x,y);
+        }
+
+        public float GetValueNormalized()
+        {
+            return (float)value / maxHeatMapValue;
+        }
+
+        public override string ToString()
+        {
+            return value.ToString();
+        }
+
+    }
+
+    public class StringGridObject
+    {
+        private Grid<StringGridObject> grid;
+        private string letters;
+        private string numbers;
+        private int x;
+        private int y;
+
+        public StringGridObject(Grid<StringGridObject> grid, int x, int y)
+        {
+
+        }
+
+        public void AddLetter(string letter)
+        {
+            letters += letter; 
+        }
+
+        public void AddNumber(string number)
+        {
+            numbers += number;
+        }
+    }
+
+   /* private class HeatMapVisual
+    {
+        private Grid grid;
+
+        public HeatMapVisual(Grid grid)
+        {
+            this.grid = grid;
+
+            Vector3[] verticles;
+            Vector2[] uv;
+            int[] triangles;
+            
+            
+            
+            for (int x=0; x < grid.GetWidth(); x++)
+            {
+                for (int y = 0; y < grid.GetHeight(); y++)
+                {
+
+                }
+            }
+           
+
+        }
+    }*/
 
     #region Mouse coursor position getter
 
@@ -57,4 +148,6 @@ public class GridTesting : MonoBehaviour
         return worldPosition;
     }
     #endregion
+
+
 }

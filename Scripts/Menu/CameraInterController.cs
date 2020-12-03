@@ -14,6 +14,7 @@ public class CameraInterController : MonoBehaviour
     [SerializeField] private float zoomDelta = 5f;
 
     [Header("CameraMovement")]
+    [SerializeField] private GameObject player;
     [SerializeField] [Range(0.5f, 30f)] private float cameraMoveSpeed = 5f;
 
     private void Awake()
@@ -25,7 +26,15 @@ public class CameraInterController : MonoBehaviour
     void Update()
     {
         ZoomChange();
-        CameraMove();
+        CameraFollowPlayer(player);
+        //CameraMove();
+    }
+
+    private void CameraFollowPlayer(GameObject player)
+    {
+        Vector3 playerPos = player.transform.position;
+        playerPos.z = -10f;
+         camera.transform.position = playerPos;
     }
 
     private void ZoomChange()
@@ -51,7 +60,7 @@ public class CameraInterController : MonoBehaviour
     }
 
     #region Debug Camera Move
-
+    /*
     private void CameraMove()
     {
         CameraMoveX();
@@ -93,6 +102,7 @@ public class CameraInterController : MonoBehaviour
             camera.transform.position = cameraPos;
         }
     }
+    */
 
     #endregion
 }
