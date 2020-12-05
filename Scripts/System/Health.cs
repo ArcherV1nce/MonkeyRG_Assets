@@ -9,6 +9,13 @@ public class Health
     private float damage_reduction;
     private float recent_damage;
 
+    public Health()
+    {
+        MAX_HEALTH = 100000;
+        health_amoung = 100;
+        damage_reduction = 0;
+        recent_damage = 0;
+    }
 
     public Health(float MAX_HEALTH, float health, float damage_reduction, float recent_damage)
     {
