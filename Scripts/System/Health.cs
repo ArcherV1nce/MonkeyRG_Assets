@@ -1,18 +1,19 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health
+[Serializable] public class Health
 {
     private float MAX_HEALTH;
-    private float health_amoung;
+    private float health_amount;
     private float damage_reduction;
     private float recent_damage;
 
     public Health()
     {
         MAX_HEALTH = 100000;
-        health_amoung = 100;
+        health_amount = 100;
         damage_reduction = 0;
         recent_damage = 0;
     }
@@ -20,21 +21,21 @@ public class Health
     public Health(float MAX_HEALTH, float health, float damage_reduction, float recent_damage)
     {
         this.MAX_HEALTH = MAX_HEALTH;
-        this.health_amoung = health;
+        this.health_amount = health;
         this.damage_reduction = damage_reduction;
         this.recent_damage = recent_damage;
     }
 
     public Health(float health, float damage_reduction, float recent_damage)
     {
-        this.health_amoung = health;
+        this.health_amount = health;
         this.damage_reduction = damage_reduction;
         this.recent_damage = recent_damage;
     }
 
     public Health(float health)
     {
-        this.health_amoung = health;
+        this.health_amount = health;
     }
 
     public void DealDamage(float damage)
@@ -42,13 +43,23 @@ public class Health
         float damage_dealt = damage;
         float reduction = 1f - (damage_reduction / 100); 
         damage_dealt = damage_dealt * Mathf.Clamp(reduction, 0f, 1f);
-        health_amoung -= damage_dealt;
+        health_amount -= damage_dealt;
         recent_damage += damage_dealt;
     }
 
     public float GetHealth()
     {
-        return health_amoung;
+        return health_amount;
+    }
+
+    public float GET_MAX_HEALTH()
+    {
+        return MAX_HEALTH;
+    }
+
+    public void IncreaseMaxHealth(float MAX_HEALTH)
+    {
+        this.MAX_HEALTH = MAX_HEALTH;
     }
 
     public float GetRecentDamage()
@@ -63,11 +74,26 @@ public class Health
 
     public void HealthAdd(float addHealthAmount)
     {
-        health_amoung += addHealthAmount;
-        if(health_amoung > MAX_HEALTH)
+        health_amount += addHealthAmount;
+        if(health_amount > MAX_HEALTH)
         {
-            health_amoung = MAX_HEALTH;
+            health_amount = MAX_HEALTH;
         }
+    }
+
+    public void SetHealth(float health_amount)
+    {
+        this.health_amount = health_amount;
+    }
+
+    public float GetArmorAmount()
+    {
+        return damage_reduction;
+    }
+
+    public void SetArmorAmount (float damage_reduction)
+    {
+        this.damage_reduction = damage_reduction;
     }
 
 }
