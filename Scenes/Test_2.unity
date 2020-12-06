@@ -1077,7 +1077,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 853982020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 100, y: 100, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1232,8 +1232,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce25bed35c1f3848aa0772389249951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridSizeX: 50
-  gridSizeY: 50
+  gridSizeX: 100
+  gridSizeY: 100
   worldLimiter: {fileID: 771728638888761429, guid: 1e1676d51866df544b7d8ecfd1ea57d8, type: 3}
 --- !u!1 &1403852245
 GameObject:
