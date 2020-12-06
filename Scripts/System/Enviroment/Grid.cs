@@ -48,9 +48,10 @@ using UnityEngine.EventSystems;
 
                     gridArray[x, y] = createGridObject(this, x, y);
 
-
+                    /*
                     debugArrayText[x, y] = CreateWorldText(gridArray[x, y].ToString(), null, GetWorldPosition(x, y) + new Vector3(cellSize, cellSize) * 0.5f,
                         12, Color.white, TextAnchor.MiddleCenter);
+                    */
                     Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x, y + 1), Color.grey, 100f);
                     Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x + 1, y), Color.grey, 100f);
                 }
@@ -59,7 +60,7 @@ using UnityEngine.EventSystems;
 
                 OnGridObjectChanged += (object sender, OnGridObjectChangedArgs eventArgs) =>
                 {
-                    debugArrayText[eventArgs.x, eventArgs.y].text = gridArray[eventArgs.x, eventArgs.y].ToString();
+                    //debugArrayText[eventArgs.x, eventArgs.y].text = gridArray[eventArgs.x, eventArgs.y].ToString();
                 };
 
             }

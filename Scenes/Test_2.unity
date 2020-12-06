@@ -237,6 +237,7 @@ GameObject:
   - component: {fileID: 168006342}
   - component: {fileID: 168006343}
   - component: {fileID: 168006344}
+  - component: {fileID: 168006345}
   m_Layer: 8
   m_Name: Player
   m_TagString: PlayerTag
@@ -303,7 +304,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 168006339}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: 15, z: 0}
+  m_LocalPosition: {x: 5, y: 5, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -357,6 +358,27 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.2, y: 0.2}
   m_Direction: 0
+--- !u!50 &168006345
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168006339}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &314514582
 GameObject:
   m_ObjectHideFlags: 0
@@ -1212,7 +1234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridSizeX: 50
   gridSizeY: 50
-  worldGrid: {fileID: 0}
+  worldLimiter: {fileID: 771728638888761429, guid: 1e1676d51866df544b7d8ecfd1ea57d8, type: 3}
 --- !u!1 &1403852245
 GameObject:
   m_ObjectHideFlags: 0
