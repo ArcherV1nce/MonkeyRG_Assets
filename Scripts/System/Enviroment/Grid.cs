@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class Grid<TGridObject> {
+[Serializable] public class Grid<TGridObject> {
 
     public const int heatMapMaxValue = 100;
     public const int heatMapMinValue = 0;

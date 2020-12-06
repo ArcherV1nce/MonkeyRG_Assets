@@ -10,7 +10,7 @@ public class CameraInterController : MonoBehaviour
     [Header("Zoom")]
     [SerializeField] [Range(5f, 120f)] private float cameraZoom = 30f;
     [SerializeField] private static float minZoom = 5f;
-    [SerializeField] private static float maxZoom = 120f;
+    [SerializeField] private static float maxZoom = 15f;
     [SerializeField] private float zoomDelta = 5f;
 
     [Header("CameraMovement")]
