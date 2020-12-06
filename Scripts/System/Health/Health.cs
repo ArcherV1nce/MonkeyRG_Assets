@@ -8,7 +8,7 @@ using UnityEngine;
     private float MAX_HEALTH;
     private float health_amount;
     private float damage_reduction;
-    private float recent_damage;
+    private int recent_damage;
 
     public Health()
     {
@@ -18,7 +18,7 @@ using UnityEngine;
         recent_damage = 0;
     }
 
-    public Health(float MAX_HEALTH, float health, float damage_reduction, float recent_damage)
+    public Health(float MAX_HEALTH, float health, float damage_reduction, int recent_damage)
     {
         this.MAX_HEALTH = MAX_HEALTH;
         this.health_amount = health;
@@ -26,7 +26,20 @@ using UnityEngine;
         this.recent_damage = recent_damage;
     }
 
-    public Health(float health, float damage_reduction, float recent_damage)
+    public Health(float health, float damage_reduction)
+    {
+        this.health_amount = health;
+        this.damage_reduction = damage_reduction;
+    }
+
+    public Health (float MAX_HEALTH, float health, float damage_reduction)
+    {
+        this.MAX_HEALTH = MAX_HEALTH;
+        this.health_amount = health;
+        this.damage_reduction = damage_reduction;
+    }
+
+    public Health(float health, float damage_reduction, int recent_damage)
     {
         this.health_amount = health;
         this.damage_reduction = damage_reduction;
@@ -44,7 +57,8 @@ using UnityEngine;
         float reduction = 1f - (damage_reduction / 100); 
         damage_dealt = damage_dealt * Mathf.Clamp(reduction, 0f, 1f);
         health_amount -= damage_dealt;
-        recent_damage += damage_dealt;
+        int damage_d = (int) damage_dealt;
+        recent_damage += damage_d;
     }
 
     public float GetHealth()
@@ -69,7 +83,7 @@ using UnityEngine;
 
     public void ResetRecentDamage()
     {
-        recent_damage = 0f;
+        recent_damage = 0;
     }
 
     public void HealthAdd(float addHealthAmount)
