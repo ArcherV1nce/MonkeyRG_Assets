@@ -12,10 +12,8 @@ public class PlayerMoveController : MonoBehaviour
     [Range(1f, 30f)] [SerializeField] private float playerDashMultiplier = 10f;
     [Range(0.05f, 0.3f)] [SerializeField] private float playerDashDuration = 0.1f;
     [Range(1f, 30f)] [SerializeField] private float playerDashReload = 15f;
-    [SerializeField] private UI_Inventory uiInventory;
 
     private float dashTimer = 0f;
-    private Inventory inventory;
 
     //state variables
     [Header("Debug")]
@@ -30,36 +28,9 @@ public class PlayerMoveController : MonoBehaviour
 
     void Start()
     {
-        inventory = new Inventory(UseItem);
-        uiInventory.SetPlayer(this);
-        uiInventory.SetInventory(inventory);
-    }
-
-    private void UseItem(Item item)
-    {
-        switch (item.itemType)
-        {
-            default:
-            case Item.ItemType.Food:
-                {
-                    //fill hungerBar
-                    inventory.RemoveItem(new Item { itemType = Item.ItemType.Food, amount = 1 });
-                    break;
-                }
-
-        }
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collider)
-    {
-        var itemWorld = collider.GetComponent<ItemWorld>();
-        if (itemWorld != null)
-        {
-            inventory.AddItem(itemWorld.GetItem());
-            itemWorld.DestroySelf();
-        }
-    }
 
     private void Update()
     {
