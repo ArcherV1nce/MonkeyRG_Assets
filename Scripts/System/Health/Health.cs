@@ -59,6 +59,7 @@ using UnityEngine;
         health_amount -= damage_dealt;
         int damage_d = (int) damage_dealt;
         recent_damage += damage_d;
+        Debug.Log("Dealt " + damage + " damage. #Health");
     }
 
     public float GetHealth()

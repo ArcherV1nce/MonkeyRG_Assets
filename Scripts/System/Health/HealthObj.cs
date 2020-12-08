@@ -11,6 +11,8 @@ public class HealthObj : MonoBehaviour
     [SerializeField] private float MAX_HEALTH = 100f;
     [SerializeField] Collider2D healthCollider;
 
+    [SerializeField] GameObject itemDrop;
+
     private void Awake()
     {
         health = new Health(100f, 0f);
@@ -20,6 +22,33 @@ public class HealthObj : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        CheckDeath();
+    }
 
+    public void DealDamage(float damage)
+    {
+        health.DealDamage(damage);
+        Debug.Log("Dealt " + damage + " damage.");
+        health_amount = health.GetHealth();
+    }
+
+    private void CheckDeath()
+    {
+        if (health_amount <= 0)
+        {
+            DestroyCharacter();
+        }
+    }
+
+    public void DestroyCharacter()
+    {
+        if (itemDrop != null)
+        {
+            Instantiate(itemDrop, transform.position, Quaternion.identity);
+        }
+        Destroy(gameObject);
+    }
 
 }
