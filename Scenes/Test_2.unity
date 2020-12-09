@@ -202,7 +202,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 55055807}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 12, y: 12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1499,7 +1499,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 9c623145617800349866c80954814b66, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1774,7 +1774,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridSizeX: 100
   gridSizeY: 100
+  buildingEnable: 0
   worldLimiter: {fileID: 771728638888761429, guid: 1e1676d51866df544b7d8ecfd1ea57d8, type: 3}
+  building: {fileID: 6444801300852126705, guid: a63f669ed2bebf64f9011f316e4efd12, type: 3}
+  monkeyBuilder: {fileID: 6650210959189187498, guid: 247205f54c981e74fa493cde540524f5, type: 3}
+  inventory: {fileID: 0}
+  buildingPrice: 2
 --- !u!1 &1131882914
 GameObject:
   m_ObjectHideFlags: 0
@@ -1956,7 +1961,7 @@ MonoBehaviour:
   hoverBehaviour_Sprite_Enter: {fileID: 0}
   hoverBehaviour_Move: 0
   hoverBehaviour_Move_Amount: {x: 0, y: 0}
-  triggerMouseOutFuncOnClick: 0
+  triggerMouseOutFuncOnClick: 1
 --- !u!1 &1403852245
 GameObject:
   m_ObjectHideFlags: 0

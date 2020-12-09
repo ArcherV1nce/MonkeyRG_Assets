@@ -21,6 +21,7 @@ using UnityEngine.EventSystems;
     private int height;
     private float cellSize;
     private Vector3 originPosition;
+    private Vector3[,] gridObjectPosition;
     private TGridObject[,] gridArray;
 
     private TextMesh[,] debugArrayText;
@@ -33,6 +34,18 @@ using UnityEngine.EventSystems;
         this.originPosition = originPosition;
 
         gridArray = new TGridObject[width, height];
+
+        gridObjectPosition = new Vector3[width, height];
+
+        for (int x = 0; x < width; x++)
+        {
+            for(int y = 0; y < height; y++)
+            {
+                gridObjectPosition[x, y] = new Vector3(cellSize * x, cellSize * y, 0f);
+                //Debug.Log(gridObjectPosition[x, y]);
+            }
+
+        }
 
         bool showDebug = true;
 
@@ -103,6 +116,15 @@ using UnityEngine.EventSystems;
     {
         x = Mathf.FloorToInt((worldPosition - originPosition).x / cellSize);
         y = Mathf.FloorToInt((worldPosition - originPosition).y / cellSize);
+    }
+
+    public Vector3 GetGridObjectPosition(int x, int y)
+    {
+        if (x >= 0 && y >= 0 && x < width && y < height)
+        {
+            return gridObjectPosition[x, y];
+        }
+        else return new Vector3(0, 0, 0);
     }
 
     public void SetGridObject (Vector3 worldPosition, TGridObject gridObject)

@@ -37,4 +37,5 @@ public class Item
             case ItemType.Coin: return true;
         }
     }
+
 }

@@ -23,7 +23,10 @@ public class DamageDealer : MonoBehaviour
         Debug.LogWarning(collision.gameObject);
         HealthObj health = collision.gameObject.GetComponent<HealthObj>();
 
-        health.DealDamage(damage);
+        if (health != null)
+        {
+            health.DealDamage(damage);
+        }
 
         if (singleDamage)
         {

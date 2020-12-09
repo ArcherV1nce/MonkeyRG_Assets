@@ -20,7 +20,15 @@ public class InventoryController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Mouse3))
+        {
+            List<Item> items = inventory.GetItemList();
+            foreach(Item i in items)
+            {
+                Debug.Log(i.itemType);
+                Debug.Log(i.amount);
+            }
+        }
     }
 
     private void UseItem(Item item)
@@ -35,6 +43,11 @@ public class InventoryController : MonoBehaviour
                     break;
                 }
 
+            case Item.ItemType.Coin:
+                {
+                    inventory.RemoveItem(new Item { itemType = Item.ItemType.Coin, amount = 1 });
+                        break;
+                }
         }
 
     }
@@ -47,5 +60,10 @@ public class InventoryController : MonoBehaviour
             inventory.AddItem(itemWorld.GetItem());
             itemWorld.DestroySelf();
         }
+    }
+
+    public Inventory GetInventory()
+    {
+        return inventory;
     }
 }
