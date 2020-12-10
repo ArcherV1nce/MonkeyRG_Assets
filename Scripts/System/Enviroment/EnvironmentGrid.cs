@@ -12,6 +12,7 @@ public class EnvironmentGrid : MonoBehaviour
 
     [SerializeField] private GameObject worldLimiter;
     [SerializeField] private GameObject building;
+    [SerializeField] private GameObject buildingEnd;
     [SerializeField] private GameObject monkeyBuilder;
 
     [SerializeField] private InventoryController inventory;
@@ -156,6 +157,22 @@ public class EnvironmentGrid : MonoBehaviour
         }
     }
 
+    public void BuildEndLevel(int price)
+    {
+        if (UseMoneyToBuild(price))
+        {
+            Vector3 buildingPos = GetMouseWorldPosition();
+            Quaternion rot = new Quaternion();
+            Instantiate(buildingEnd, buildingPos, rot);
+            EnvironmentObject environmentObject = new EnvironmentObject();
+            environmentObject.AddObject(buildingEnd);
+            worldGrid.SetGridObject(buildingPos, environmentObject);
+            Vector3 monkeyPos = new Vector3(buildingPos.x + 1f, buildingPos.y, buildingPos.z);
+            GameObject monkey = Instantiate(monkeyBuilder, monkeyPos, rot);
+            Destroy(monkey, 3f);
+        }
+    }
+
     private void Build()
     {
         if (buildingEnable)
@@ -163,6 +180,10 @@ public class EnvironmentGrid : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
                 BuildHouse();
+            }
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                BuildEndLevel(5);
             }
         }
     }

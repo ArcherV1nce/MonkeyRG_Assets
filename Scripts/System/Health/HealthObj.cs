@@ -41,8 +41,10 @@ public class HealthObj : MonoBehaviour
             DestroyCharacter();
             if(gameObject.tag == "PlayerTag")
             {
-                QuitApp quit = new QuitApp();
-                quit.Quit();
+                NextLevelStart ns = new NextLevelStart();
+                ns.RestartLevel();
+                //QuitApp quit = new QuitApp();
+                //quit.Quit();
             }
         }
     }

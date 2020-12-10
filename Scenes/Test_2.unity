@@ -1578,6 +1578,7 @@ MonoBehaviour:
   buildingEnable: 1
   worldLimiter: {fileID: 771728638888761429, guid: 1e1676d51866df544b7d8ecfd1ea57d8, type: 3}
   building: {fileID: 6444801300852126705, guid: a63f669ed2bebf64f9011f316e4efd12, type: 3}
+  buildingEnd: {fileID: 1033417822850400709, guid: 7623577109d4aa6429bb0351bed5829b, type: 3}
   monkeyBuilder: {fileID: 6650210959189187498, guid: 247205f54c981e74fa493cde540524f5, type: 3}
   inventory: {fileID: 0}
   buildingPrice: 2
