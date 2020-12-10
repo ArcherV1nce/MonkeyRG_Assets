@@ -39,6 +39,11 @@ public class HealthObj : MonoBehaviour
         if (health_amount <= 0)
         {
             DestroyCharacter();
+            if(gameObject.tag == "PlayerTag")
+            {
+                QuitApp quit = new QuitApp();
+                quit.Quit();
+            }
         }
     }
 
