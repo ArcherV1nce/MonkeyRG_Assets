@@ -189,4 +189,9 @@ using UnityEngine.EventSystems;
         return new Vector3(x, y) * cellSize + originPosition;
     }
 
+    public float GetCellSize()
+    {
+        return cellSize;
+    }
+
 }

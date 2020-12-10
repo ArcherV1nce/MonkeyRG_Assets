@@ -18,6 +18,7 @@ public class EnvironmentGrid : MonoBehaviour
 
     [SerializeField] private int buildingPrice = 2;
 
+    [SerializeField] private List<GameObject> randomObjects;
 
     private void Awake()
     {
@@ -29,6 +30,7 @@ public class EnvironmentGrid : MonoBehaviour
     private void Start()
     {
         SetBoundaries();
+        WorldGridFill();
     }
 
     private void Update()
@@ -164,5 +166,67 @@ public class EnvironmentGrid : MonoBehaviour
             }
         }
     }
+
+    public float GetCellSize()
+    {
+        return worldGrid.GetCellSize();
+    }
+
+    public float GetHeight()
+    {
+        return worldGrid.GetHeight();
+    }
+
+    public float GetWidth()
+    {
+        return worldGrid.GetWidth();
+    }
+
+    private void WorldGridFill()
+    {
+        int[,] tempInt = RoomGenerator.GetRooms(gridSizeX);
+        EnvironmentObject environmentObject = new EnvironmentObject();
+
+        PlayerMoveController tempPlayer = FindObjectOfType<PlayerMoveController>();
+        bool lookingForSpawn = true;
+        for (int x = 0; x < gridSizeX; x++)
+        {
+            for (int y = 0; y < gridSizeY; y++)
+            {
+                if (tempInt[x,y] != 0)
+                {
+                    Vector3 pos = worldGrid.GetGridObjectPosition(x, y);
+                    Quaternion rot = new Quaternion();
+                    Instantiate(worldLimiter, pos, rot);
+                    environmentObject.AddObject(worldLimiter);
+                    worldGrid.SetGridObject(x, y, environmentObject);
+                }
+                else
+                {
+                    int i = Random.Range(0, randomObjects.Count);
+                    if (randomObjects[i] != null)
+                    {
+                        if (lookingForSpawn)
+                        {
+                                Debug.Log("Looking for spawn");
+                                tempPlayer.transform.position = worldGrid.GetGridObjectPosition(x, y);
+                                lookingForSpawn = false;
+                        }
+
+                        else
+                        {
+                            Vector3 pos = worldGrid.GetGridObjectPosition(x, y);
+                            Quaternion rot = new Quaternion();
+                            Instantiate(randomObjects[i], pos, rot);
+                            environmentObject.AddObject(randomObjects[i]);
+                            worldGrid.SetGridObject(x, y, environmentObject);
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+
 
 }

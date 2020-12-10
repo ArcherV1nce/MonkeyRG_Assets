@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp19
-{
+
     public static class RoomGenerator
     {
         static int[,] arr;
@@ -249,4 +248,3 @@ namespace ConsoleApp19
         }
 
     }
-}
